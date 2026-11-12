@@ -8,6 +8,7 @@ function top_down_pick_joints=load_top_pick_joint_data
 %           angles.
 %--------------------------------------------------------------------------
 % BEGIN_YOUR_CODE 
-error("Not implemented yet")
+load_data = load_top_pick_joint_data
+top_down_pick_joints= load_data
 % END_YOUR_CODE
 end

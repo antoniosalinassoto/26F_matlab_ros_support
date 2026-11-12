@@ -8,11 +8,19 @@ function resetWorld(optns)
     disp('Resetting the world...');
     
     % TODO: 01 Get robot handle
-    % **Complete Code**
+    r = optns('rHandle');
     
     % TODO: 02 Create Empty Simulation message
-    % **Complete Code**
+    ros_client_msg = rosmessage(r.res_client);
     
     % TODO: 03 Call reset service
-    
+    status = waitForServer(r.res_client);    
+    if status
+        try
+            [testresp,status,statustext] = call(r.res_client, ros_client_msg,"Timeout",3);
+        catch
+            disp('Error - models not listed...')    
+
+        end  
+    end
 end

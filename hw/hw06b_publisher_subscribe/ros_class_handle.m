@@ -51,15 +51,15 @@ classdef ros_class_handle
             % Set r as a structure. Create fields with values as:
             % r.field1 = val1
             % r.field2 = val2
-            r.joint_state_pub         = % Fill your rospublisher...
-            r.joint_state_sub         = % Fill your rossubscriber(...
+            r.joint_state_pub         = rospublisher('/matlab_joint_states', 'sensor_msgs/JointState');
+            r.joint_state_sub         = rossubscriber('/joint_states', 'sensor_msgs/JointState');
 
             % Robot
-            r.robot = % Fill your loadrobot(...
-            r.initialRobotJConfig     = % Set to r.robot's home configuration
+            r.robot = loadrobot('frankaEmikaPanda', 'DataFormat', 'row');
+            r.initialRobotJConfig     = homeConfiguration(r.robot);
 
             % Numerical IKs
-            r.ik                      = % Set to numerical inverse kinematics for your r.robot 
+            r.ik                      = inverseKinematics('RigidBodyTree', r.robot); 
             r.ik_weights              = [0.25, 0.25, 0.25, 0.1, 0.1, 0.1];  
         end
     end

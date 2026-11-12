@@ -21,6 +21,10 @@ function tdp_ctraj = top_pick(top_down_pick_joints,robot,tool_frame)
 %                                           to the forward kinematics at each of the 5 way-points.
 %----------------------------------------------------------------------
     % BEGIN_YOUR_CODE 
-    error("Not implemented yet")
+    tdp_ctraj = zeros(4, 4, 5);
+    for i = 1:5
+        q = top_down_pick_joints(i, :);
+        tdp_ctraj(:, :, i) = getTransform(robot, q, tool_frame);
+    end
     % END_YOUR_CODE
 end
